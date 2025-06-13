@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <h1>Interactive Resume Builder</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="previewBtn" class="btn btn-outline" disabled>
+                        <i class="fas fa-eye"></i>
+                        Preview
+                    </button>
+                    <button id="exportBtn" class="btn btn-primary" disabled>
+                        <i class="fas fa-download"></i>
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="personal">Personal</button>
+                <button class="tab-btn" data-tab="experience">Experience</button>
+                <button class="tab-btn" data-tab="education">Education</button>
+                <button class="tab-btn" data-tab="skills">Skills</button>
+                <button class="tab-btn" data-tab="template">Template</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Personal Information Tab -->
+                <div id="personal" class="tab-panel active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Personal Information</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" placeholder="john@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone *</label>
+                                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location *</label>
+                                    <input type="text" id="location" placeholder="New York, NY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="url" id="website" placeholder="https://johndoe.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedin">LinkedIn</label>
+                                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/johndoe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="summary">Professional Summary *</label>
+                                <textarea id="summary" rows="4" placeholder="Brief professional summary highlighting your key skills and experience..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Tab -->
+                <div id="experience" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Work Experience</h2>
+                            <button id="addExperience" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Experience
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="experienceList" class="experience-list">
+                                <div class="empty-state">
+                                    <p>No work experience added yet. Click "Add Experience" to get started.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Tab -->
+                <div id="education" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Education</h2>
+                            <button id="addEducation" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Education
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="educationList" class="education-list">
+                                <div class="empty-state">
+                                    <p>No education added yet. Click "Add Education" to get started.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Tab -->
+                <div id="skills" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Skills</h2>
+                            <button id="addSkill" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Skill
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="skillsList" class="skills-list">
+                                <div class="empty-state">
+                                    <p>No skills added yet. Click "Add Skill" to get started.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Tab -->
+                <div id="template" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Choose a Template</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="template-grid">
+                                <div class="template-card active" data-template="modern">
+                                    <div class="template-preview">
+                                        <div class="template-preview-content modern-preview">
+                                            <div class="preview-header"></div>
+                                            <div class="preview-content">
+                                                <div class="preview-line"></div>
+                                                <div class="preview-line short"></div>
+                                                <div class="preview-section">
+                                                    <div class="preview-line"></div>
+                                                    <div class="preview-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-info">
+                                        <h3>Modern</h3>
+                                        <p>Clean and professional design with blue accents</p>
+                                        <button class="btn btn-primary template-select-btn">Selected</button>
+                                    </div>
+                                </div>
+
+                                <div class="template-card" data-template="classic">
+                                    <div class="template-preview">
+                                        <div class="template-preview-content classic-preview">
+                                            <div class="preview-header"></div>
+                                            <div class="preview-content">
+                                                <div class="preview-line"></div>
+                                                <div class="preview-line short"></div>
+                                                <div class="preview-section">
+                                                    <div class="preview-line"></div>
+                                                    <div class="preview-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-info">
+                                        <h3>Classic</h3>
+                                        <p>Traditional serif font with elegant styling</p>
+                                        <button class="btn btn-outline template-select-btn">Select</button>
+                                    </div>
+                                </div>
+
+                                <div class="template-card" data-template="creative">
+                                    <div class="template-preview">
+                                        <div class="template-preview-content creative-preview">
+                                            <div class="preview-sidebar"></div>
+                                            <div class="preview-main">
+                                                <div class="preview-line"></div>
+                                                <div class="preview-line short"></div>
+                                                <div class="preview-section">
+                                                    <div class="preview-line"></div>
+                                                    <div class="preview-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-info">
+                                        <h3>Creative</h3>
+                                        <p>Eye-catching design with sidebar layout</p>
+                                        <button class="btn btn-outline template-select-btn">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Preview Modal -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Resume Preview</h2>
+                    <div class="modal-actions">
+                        <button id="closePreview" class="btn btn-outline">Back to Editor</button>
+                        <button id="exportFromPreview" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="resumePreview" class="resume-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
